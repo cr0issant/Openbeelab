@@ -39,7 +39,7 @@ void loop(){
   
   //delay(1000);
 
-  if ( ( dataPhotoDiode > ( 500 + tolerance ) ) || ( buttonStateAvance == LOW && buttonStateRecule == HIGH ) )  {
+  if ( ( dataPhotoDiode > ( 512 + tolerance ) ) || ( buttonStateAvance == LOW && buttonStateRecule == HIGH ) )  {
     
     digitalWrite( pinDir   , HIGH); // Direction avant
     digitalWrite( pinStep  , LOW);  // Initialisation de la broche step
@@ -52,7 +52,7 @@ void loop(){
     Serial.println( pas );
     check = 0;
   }
-  else if ( ( dataPhotoDiode < ( 500 - tolerance ) ) || ( buttonStateAvance == HIGH && buttonStateRecule == LOW ) )  {
+  else if ( ( dataPhotoDiode < ( 512 - tolerance ) ) || ( buttonStateAvance == HIGH && buttonStateRecule == LOW ) )  {
 
     digitalWrite( pinDir   , LOW); // Direction avant
   
