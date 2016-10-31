@@ -34,15 +34,14 @@ void loop(){
   
   buttonStateAvance = digitalRead(buttonPinAvance); //Direction Descendre
   buttonStateRecule = digitalRead(buttonPinRecule); //Direction Monter
-  
+  digitalWrite( pinStep  , LOW);  // Initialisation de la broche step  
   dataPhotoDiode = analogRead(A0); // 0 obturé 1024 ouvert
   
   //delay(1000);
 
   if ( ( dataPhotoDiode > ( 512 + tolerance ) ) || ( buttonStateAvance == LOW && buttonStateRecule == HIGH ) )  {
-    
+    digitalWrite( pinEnable, LOW);
     digitalWrite( pinDir   , HIGH); // Direction avant
-    digitalWrite( pinStep  , LOW);  // Initialisation de la broche step
   
     digitalWrite( pinStep, HIGH );
     delay( 1 );
@@ -53,7 +52,7 @@ void loop(){
     check = 0;
   }
   else if ( ( dataPhotoDiode < ( 512 - tolerance ) ) || ( buttonStateAvance == HIGH && buttonStateRecule == LOW ) )  {
-
+    digitalWrite( pinEnable, LOW);
     digitalWrite( pinDir   , LOW); // Direction avant
   
     digitalWrite( pinStep, HIGH );
@@ -76,6 +75,7 @@ void loop(){
        Serial.println( "Poids" );
        Serial.println( poids );
        Serial.println( "---Fin Resultat---" );
+       digitalWrite( pinEnable, HIGH );
        check = 1;
     }
     else {
